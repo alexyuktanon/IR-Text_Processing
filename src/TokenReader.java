@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Map.Entry;
 import java.io.File;
@@ -268,5 +269,10 @@ public class TokenReader {
 		}catch (IOException e){
 			System.err.println("Caught IOException: " + e.getMessage());
 		}	
+	}
+	
+	private static String getCurrentTime(){
+		String timeStamp = new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime());
+		return timeStamp;
 	}
 }
