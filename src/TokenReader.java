@@ -10,6 +10,8 @@ import org.apache.commons.io.FileUtils;
 public class TokenReader {
 
 	public static void main(String[] args){
+		System.out.println("* The program starts at " + getCurrentTime());
+		
 		//Share
 		List<String> tokensList = tokenizeFile();
 		
@@ -27,6 +29,8 @@ public class TokenReader {
 		//Part D
 		Map<String, Integer> palindromeFrequencies = computePalindromeFrequencies(tokensList);
 		printPalindromeFrequencies(palindromeFrequencies);
+		
+		System.out.println("* The program ends at " + getCurrentTime());
 	}
 	
 	//*** PART A : Utilities ***
@@ -34,25 +38,33 @@ public class TokenReader {
 		String text = new String();
 		
 		//Read text file
+		System.out.println("A01 - Start reading file at " + getCurrentTime());
 		try{
 			text = FileUtils.readFileToString(new File("text-test.txt"));
+			System.out.println("A01 - End reading file at " + getCurrentTime());
 		}catch (IOException e){
 			System.err.println("Caught IOException: " + e.getMessage());
 		}
 		
 		//Replace special characters with whitespace
+		System.out.println("A02 - Start processing special chars at " + getCurrentTime());
 		text = text.replaceAll("[^A-Za-z0-9]", " ");
+		System.out.println("A02 - End processing special chars at " + getCurrentTime());
 		
 		//Split text into tokens
+		System.out.println("A03 - Start spliting tokens at " + getCurrentTime());
 		String[] tokens = text.trim().split("\\s+");		
+		System.out.println("A03 - End spliting tokens at " + getCurrentTime());
 		
 		//Add each token to array list
+		System.out.println("A04 - Start creating tokens array at " + getCurrentTime());
 		List<String> tokensList = new ArrayList<String>();
 		for (int i = 0; i < tokens.length; i++){
 			if(tokens[i].length() > 1){
 				tokensList.add( tokens[i].toLowerCase() );
 			}
 		}
+		System.out.println("A04 - End creating tokens array at " + getCurrentTime());
 		
 		return tokensList;
 	}
@@ -60,6 +72,7 @@ public class TokenReader {
 	public static void printTokenList(List<String> tokensList){
 	    String textResult = new String();
 	    
+	    System.out.println("A05 - Start preparing result string at " + getCurrentTime());
 	    textResult = "### List of tokens ###\n\n";
 	    textResult += "Total number of token: " + tokensList.size() + "\n\n";
 		for(int i = 0; i < tokensList.size(); i++){
@@ -67,11 +80,14 @@ public class TokenReader {
 			textResult += tokensList.get(i) + "\n";
 		}
 		textResult += "----- END OF RESULT -----";
+		System.out.println("A05 - End preparing result string at " + getCurrentTime());
 		
 		//Write result to text file
+		System.out.println("A06 - Start writing result file at " + getCurrentTime());
 		try{
 			File file = new File("result.txt");
 			FileUtils.writeStringToFile(file, textResult);
+			System.out.println("A06 - End writing result file at " + getCurrentTime());
 			System.out.println("Result is ready!");
 		}catch (IOException e){
 			System.err.println("Caught IOException: " + e.getMessage());
@@ -83,6 +99,7 @@ public class TokenReader {
 		Map<String, Integer> tokensFrequencies = new HashMap<String, Integer>();
 		
 		//Compute token and its frequency
+		System.out.println("B01 - Start computing token and frequency at " + getCurrentTime());
 		for(int i = 0; i < tokensList.size(); i++){
 			if(tokensFrequencies.containsKey(tokensList.get(i))){
 				int currentFrequency = (int) tokensFrequencies.get(tokensList.get(i));
@@ -94,6 +111,7 @@ public class TokenReader {
 			}
 
 		}
+		System.out.println("B01 - End computing token and frequency at " + getCurrentTime());
 		
 		return tokensFrequencies;
 	}
@@ -106,12 +124,15 @@ public class TokenReader {
 	//*** PART C : 2-grams ***
 	public static Map<String, Integer> computeTwoGramsFrequencies(List<String> tokensList){
 		//Produce 2-grams
+		System.out.println("C01 - Start generating 2-grams array list at " + getCurrentTime());
 		List<String> twoGramsList = new ArrayList<String>();
 		for(int i = 0; i < tokensList.size() - 1; i++){
 			twoGramsList.add( tokensList.get(i) + " " + tokensList.get(i+1) );
 		}
+		System.out.println("C01 - End generating 2-grams array list at " + getCurrentTime());
 		
 		//Compute token and its frequency
+		System.out.println("C02 - Start computing token and frequency at " + getCurrentTime());
 		Map<String, Integer> twoGramsFrequencies = new HashMap<String, Integer>();
 		for(int i = 0; i < twoGramsList.size(); i++){
 			if(twoGramsFrequencies.containsKey(twoGramsList.get(i))){
@@ -124,6 +145,7 @@ public class TokenReader {
 			}
 
 		}
+		System.out.println("C02 - End computing token and frequency at " + getCurrentTime());
 		
 		return twoGramsFrequencies;
 	}
@@ -152,6 +174,7 @@ public class TokenReader {
 		computeOneTokenPalindrome(Map<String, Integer> palindromeFrequencies, 
 								  List<String> tokensList){
 		
+		System.out.println("D01 - Start computing one token palindrome at " + getCurrentTime());
 		for(int i = 0; i < tokensList.size(); i++){
 			String token 	= tokensList.get(i);
 			int tokenLength = token.length();
@@ -173,6 +196,7 @@ public class TokenReader {
 				}
 			}
 		}
+		System.out.println("D01 - End computing one token palindrome at " + getCurrentTime());
 		
 		return palindromeFrequencies;
 	}
@@ -181,6 +205,7 @@ public class TokenReader {
 			computeMultipleTokensPalindrome(Map<String, Integer> palindromeFrequencies, 
 											List<String> tokensList){
 		
+		System.out.println("D02 - Start computing multiple tokens palindrome at " + getCurrentTime());
 		for(int i = 0; i < tokensList.size() - 1; i++){
 			int tokensListSize		= tokensList.size();
 			String originalToken 	= tokensList.get(i);
@@ -217,6 +242,7 @@ public class TokenReader {
 				}
 			}
 		}
+		System.out.println("D02 - End computing multiple tokens palindrome at " + getCurrentTime());
 		
 		return palindromeFrequencies;
 	}
@@ -225,7 +251,11 @@ public class TokenReader {
 	@SuppressWarnings("unchecked")
 	private static void sortByFrequency(String title, Map<String, Integer> frequenciesMap, List<String> tokensList) { 
 		//Convert Map to Array
+		System.out.println("S01 - Start converting Map to Array at " + getCurrentTime());
 	    Object[] frequenciesArray = frequenciesMap.entrySet().toArray();
+	    System.out.println("S01 - End converting Map to Array at " + getCurrentTime());
+	    
+	    System.out.println("S02 - Start sorting by frequency at " + getCurrentTime());
 	    Arrays.sort(frequenciesArray, new Comparator<Object>() {
 			public int compare(Object o1, Object o2) {
 	        	Entry<String, Integer> entry1 = (Map.Entry<String, Integer>) o1;
@@ -233,9 +263,11 @@ public class TokenReader {
 				return entry2.getValue().compareTo(entry1.getValue());
 	        }
 	    });
+	    System.out.println("S02 - End sorting by frequency at " + getCurrentTime());
 	    
 	    //Print sorted Map
 	    String textResult = new String();
+	    System.out.println("S03 - Start preparing result string at " + getCurrentTime());
 //	    System.out.println("### Result by highest to lowest frequency ###");
 	    textResult = "### Result of " + title + " by highest to lowest frequency ###\n\n";
 	    
@@ -260,12 +292,15 @@ public class TokenReader {
 	        textResult += entry.getKey() + " - " + entry.getValue() + "\n";
 	    }
 	    textResult += "\n----- END OF RESULT -----";
+	    System.out.println("S03 - End preparing result string at " + getCurrentTime());
 	    
 		//Write result to text file
+	    System.out.println("S04 - Start writing result file at " + getCurrentTime());
 		try{
 			File file = new File("result.txt");
 			FileUtils.writeStringToFile(file, textResult);
 			System.out.println("Result is ready!");
+			System.out.println("S04 - End writing result file at " + getCurrentTime());
 		}catch (IOException e){
 			System.err.println("Caught IOException: " + e.getMessage());
 		}	
