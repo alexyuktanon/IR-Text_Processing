@@ -34,7 +34,7 @@ public class TokenReader {
 		
 		//Read text file
 		try{
-			text = FileUtils.readFileToString(new File("test-real.txt"));
+			text = FileUtils.readFileToString(new File("text-test.txt"));
 		}catch (IOException e){
 			System.err.println("Caught IOException: " + e.getMessage());
 		}
