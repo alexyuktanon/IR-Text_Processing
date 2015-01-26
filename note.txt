@@ -1,0 +1,2 @@
+Note:
+- This program is run in polynomial time with O(n^2).

@@ -1,0 +1,11 @@
+References
+
+- Java Map example [ http://examples.javacodegeeks.com/java-basics/java-map-example/ ]
+- Object Ordering [ http://docs.oracle.com/javase/tutorial/collections/interfaces/order.html ]
+- How to sort HashMap in Java by Keys and Values [ http://beginnersbook.com/2013/12/how-to-sort-hashmap-in-java-by-keys-and-values/ ]
+- How to sort a Map<Key, Value> on the values in Java? [ http://stackoverflow.com/questions/109383/how-to-sort-a-mapkey-value-on-the-values-in-java ]
+- How to sort a hashmap by the Integer Value [ http://stackoverflow.com/questions/21054415/how-to-sort-a-hashmap-by-the-integer-value ]
+- Using Enhanced For-Loops with Your Classes [ https://blogs.oracle.com/CoreJavaTechTips/entry/using_enhanced_for_loops_with ]
+- Find all substrings that are palindromes [ http://stackoverflow.com/questions/19801081/find-all-substrings-that-are-palindromes ]
+- Class FileUtils [ http://commons.apache.org/proper/commons-io/apidocs/org/apache/commons/io/FileUtils.html#write(java.io.File, java.lang.CharSequence, java.nio.charset.Charset) ]
+- How do I write a String to a File using Commons IO? [ http://www.avajava.com/tutorials/lessons/how-do-i-write-a-string-to-a-file-using-commons-io.html ]
